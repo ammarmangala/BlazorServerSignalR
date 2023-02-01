@@ -19,6 +19,8 @@ builder.Services.AddResponseCompression(opts =>
 
 var app = builder.Build();
 
+app.UseResponseCompression();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -34,6 +36,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.MapBlazorHub();
+app.MapHub<ChatHub>("/chathub");
 app.MapFallbackToPage("/_Host");
 
 app.Run();
